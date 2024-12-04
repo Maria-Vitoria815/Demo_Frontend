@@ -15,14 +15,14 @@ public class HomeController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping("/")
-    public ModelAndView index() {
-        String valor = usuarioService.listAllUsuarios().toString();
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("teste", valor);
-        mv.setViewName("index");
-        return mv;
-    }
+  //  @GetMapping("/")
+ //   public ModelAndView index() {
+   //     String valor = usuarioService.listAllUsuarios().toString();
+   //     ModelAndView mv = new ModelAndView();
+   //     mv.addObject("teste", valor);
+    //    mv.setViewName("index");
+   //     return mv;
+   // }
 
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable int id) {

@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Gestão de Livros</title>
-    <link th:href="@{/css/styles.css}" rel="stylesheet" />
-
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
@@ -13,11 +12,9 @@
         </header>
         
         <main>
-          
             <section class="form-section">
                 <h2>Cadastrar Livro</h2>
-                
-                <form th:action="@{/livros/salvar}" method="post">
+                <form th:action="@{/livro/save}" method="post">
                     <label for="id_livro">ID:</label>
                     <input type="number" id="id_livro" name="id_livro" required>
                 
@@ -43,35 +40,38 @@
                     <input type="number" id="num_paginas" name="num_paginas">
                 
                     <label for="sinopse">Sinopse:</label>
-                    <textarea id="sinopse" name="sinopse
-
+                    <textarea id="sinopse" name="sinopse"></textarea>
+                
                     <button type="submit">Salvar</button>
                 </form>
             </section>
 
-         
             <section class="search-section">
                 <h2>Consultar Livro</h2>
-                <form th:action="@{/livros/consultar}" method="get">
+                
+                <form th:action="@{/livro/id/{id}(id=${id})}" method="get">
                     <label for="id">Por ID:</label>
-                    <input type="number" id="id" name="id">
+                    <input type="number" id="id" name="id" required>
                     <button type="submit">Consultar</button>
                 </form>
 
-                <form th:action="@{/livros/consultar}" method="get">
+                
+                <form th:action="@{/livro/isbn/{isbn}(isbn=${isbn})}" method="get">
                     <label for="isbn">Por ISBN:</label>
-                    <input type="text" id="isbn" name="isbn">
+                    <input type="text" id="isbn" name="isbn" required>
                     <button type="submit">Consultar</button>
                 </form>
+                
 
-                <form th:action="@{/livros/consultar}" method="get">
-                    <label for="title">Por Título:</label>
-                    <input type="text" id="title" name="title">
+                <form th:action="@{/livro/titulo/{titulo}(titulo=${titulo})}" method="get">
+                    <label for="titulo">Por Título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
                     <button type="submit">Consultar</button>
                 </form>
+                
+
             </section>
 
-           
             <section class="list-section">
                 <h2>Catálogo de Livros</h2>
                 <table>
@@ -81,17 +81,26 @@
                             <th>Título</th>
                             <th>Autor</th>
                             <th>ISBN</th>
+                            <th>Gênero</th>
+                            <th>Editora</th>
+                            <th>Ano de Publicação</th>
+                            <th>Nº páginas</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="livro : ${livros}">
+                        <tr th:each="livro : ${listaLivros}">
                             <td th:text="${livro.id}"></td>
                             <td th:text="${livro.title}"></td>
                             <td th:text="${livro.author}"></td>
                             <td th:text="${livro.isbn}"></td>
+                            <td th:text="${livro.genero}"></td>
+                            <td th:text="${livro.editora}"></td>
+                            <td th:text="${livro.ano_publicacao}"></td>
+                            <td th:text="${livro.num_paginas}"></td>
+
                             <td>
-                                <form th:action="@{/livros/deletar/{id}(id=${livro.id})}" method="post">
+                                <form th:action="@{/livro/delete/{id}(id=${livro.id})}" method="post">
                                     <button type="submit">Deletar</button>
                                 </form>
                             </td>
