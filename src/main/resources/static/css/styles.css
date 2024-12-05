@@ -10,7 +10,7 @@ body {
 /* Container pra organizar os outros containers dentro (fundo todo transparente) */
 .container {
     max-width: 700px;
-    margin: 0 200px 0 auto; 
+    margin: 0 100px 0 auto; 
     padding: 20px;
     background: rgba(255, 255, 255, 0);
     border-radius: 15px;
