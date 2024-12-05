@@ -1,8 +1,10 @@
 package br.edu.ifba.demo.frontend.service;
 
 import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
 import br.edu.ifba.demo.frontend.dto.LivroDTO;
 
 
@@ -20,15 +22,15 @@ public class LivroService {
     }
 
     public LivroDTO getById(Long id) {
-        return restTemplate.getForObject(BASE_URL + "/id/" + id, LivroDTO.class);
+        return restTemplate.getForObject(BASE_URL + "/id/{id}", LivroDTO.class, id);
     }
 
     public LivroDTO getByIsbn(String isbn) {
-        return restTemplate.getForObject(BASE_URL + "/isbn/" + isbn, LivroDTO.class);
+        return restTemplate.getForObject(BASE_URL + "/isbn/{isbn}", LivroDTO.class, isbn);
     }
 
     public LivroDTO getByTitulo(String titulo) {
-        return restTemplate.getForObject(BASE_URL + "/titulo/" + titulo, LivroDTO.class);
+        return restTemplate.getForObject(BASE_URL + "/titulo/{titulo}", LivroDTO.class, titulo);
     }
 
     public LivroDTO save(LivroDTO livro) {
@@ -36,7 +38,7 @@ public class LivroService {
     }
 
     public void delete(Long id) {
-        restTemplate.delete(BASE_URL + "/delete/" + id);
+        restTemplate.delete(BASE_URL + "/delete/{id}", id);
     }
     
 }

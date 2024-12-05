@@ -49,25 +49,26 @@
             <section class="search-section">
                 <h2>Consultar Livro</h2>
                 
-                <form th:action="@{/livro/id/{id}(id=${id})}" method="get">
+                <form th:action="@{/livro/id/}" method="get">
                     <label for="id">Por ID:</label>
                     <input type="number" id="id" name="id" required>
                     <button type="submit">Consultar</button>
                 </form>
 
                 
-                <form th:action="@{/livro/isbn/{isbn}(isbn=${isbn})}" method="get">
+                <form th:action="@{/livro/isbn/}" method="get">
                     <label for="isbn">Por ISBN:</label>
                     <input type="text" id="isbn" name="isbn" required>
                     <button type="submit">Consultar</button>
                 </form>
                 
 
-                <form th:action="@{/livro/titulo/{titulo}(titulo=${titulo})}" method="get">
+                <form th:action="@{/livro/titulo/}" method="get">
                     <label for="titulo">Por Título:</label>
                     <input type="text" id="titulo" name="titulo" required>
                     <button type="submit">Consultar</button>
                 </form>
+                
                 
 
             </section>
@@ -100,7 +101,7 @@
                             <td th:text="${livro.num_paginas}"></td>
 
                             <td>
-                                <form th:action="@{/livro/delete/{id}(id=${livro.id})}" method="post">
+                                <form th:action="@{/livro/delete/}" method="post">
                                     <button type="submit">Deletar</button>
                                 </form>
                             </td>
