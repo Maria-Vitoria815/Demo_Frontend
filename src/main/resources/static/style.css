@@ -7,7 +7,7 @@ body {
     color: #f0f8ff;
 }
 
-/* Container pra organizar os outros containers dentro (fundo todo transparente) */
+/* container pra organizar os outros containers dentro (fundo todo transparente) */
 .container {
     max-width: 700px;
     margin: 0 100px 0 auto; 
@@ -26,7 +26,7 @@ body {
     color: white;
 }
 
-/* Seções de cadastro, consulta e catálogo */
+/* catálogo, cadastro e consulta */
 section {
     margin: 20px 0;
     padding: 15px;
@@ -36,7 +36,7 @@ section {
 }
 
 h2 {
-    color: #4a90e2;
+    color: #F0F8FF;
 }
 
 
@@ -55,6 +55,7 @@ input, textarea, button {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    /*width: 500px;*/
 }
 
 button {
@@ -84,3 +85,4 @@ th, td {
     padding: 10px;
     border: 1px solid #ccc;
 }
+

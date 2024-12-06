@@ -1,115 +1,99 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Gestão de Livros</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>Biblioteca Spirit Fanfics</h1>
-        </header>
-        
-        <main>
-            <section class="form-section">
-                <h2>Cadastrar Livro</h2>
-                <form th:action="@{/livro/save}" method="post">
-                    <label for="id_livro">ID:</label>
-                    <input type="number" id="id_livro" name="id_livro" required>
-                
-                    <label for="title">Título:</label>
-                    <input type="text" id="title" name="titulo" required>
-                
-                    <label for="author">Autor:</label>
-                    <input type="text" id="author" name="autor" required>
-                
-                    <label for="editora">Editora:</label>
-                    <input type="text" id="editora" name="editora">
-                
-                    <label for="ano_publicacao">Ano de Publicação:</label>
-                    <input type="number" id="ano_publicacao" name="ano_publicacao">
-                
-                    <label for="genero">Gênero:</label>
-                    <input type="text" id="genero" name="genero">
-                
-                    <label for="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" required>
-                
-                    <label for="num_paginas">Número de Páginas:</label>
-                    <input type="number" id="num_paginas" name="num_paginas">
-                
-                    <label for="sinopse">Sinopse:</label>
-                    <textarea id="sinopse" name="sinopse"></textarea>
-                
-                    <button type="submit">Salvar</button>
-                </form>
-            </section>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biblioteca Spirit Fanfics</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/script.js"></script>
+    
+  </head>
 
-            <section class="search-section">
-                <h2>Consultar Livro</h2>
-                
-                <form th:action="@{/livro/id/}" method="get">
-                    <label for="id">Por ID:</label>
-                    <input type="number" id="id" name="id" required>
-                    <button type="submit">Consultar</button>
-                </form>
+  <body>
+    <h1>CATÁLOGO</h1>
+    <table id="tabelaLivros">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+          <th>Ano Publicação</th>
+          <th>Editora</th>
+          <th>Gênero</th>
+          <th>Idioma</th>
+          <th>Preço</th>
+          <th>N° páginas</th>
+          <th>Sinopse</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabelaCorpo"></tbody>
+    </table>
 
-                
-                <form th:action="@{/livro/isbn/}" method="get">
-                    <label for="isbn">Por ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" required>
-                    <button type="submit">Consultar</button>
-                </form>
-                
+    <br><br><br><br>
 
-                <form th:action="@{/livro/titulo/}" method="get">
-                    <label for="titulo">Por Título:</label>
-                    <input type="text" id="titulo" name="titulo" required>
-                    <button type="submit">Consultar</button>
-                </form>
-                
-                
+    <div style="display: flex; justify-content: space-between; gap: 20px">
+    
+      <div style="flex: 1">
+        <h1>CADASTRAR TÍTULO</h1>
+        <form id="formLivro" onsubmit="event.preventDefault(); addLivro();">
+          <input type="text" id="titulo" placeholder="Título" required />
+          <input type="text" id="autor" placeholder="Autor" required />
+          <input type="text" id="isbn" placeholder="ISBN" />
+          <input
+            type="number"
+            id="ano_publicacao"
+            placeholder="Ano de Publicação"
+          />
+          <input type="text" id="editora" placeholder="Editora" />
+          <input type="text" id="genero" placeholder="Gênero" required />
+          <input type="text" id="idioma" placeholder="Idioma" required />
+          <input type="number" id="preco" placeholder="Preço" required />
+          <input
+            type="number"
+            id="num_paginas"
+            placeholder="Número de Páginas"
+            required
+          />
+          <textarea id="sinopse" placeholder="Sinopse" required></textarea>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
 
-            </section>
-
-            <section class="list-section">
-                <h2>Catálogo de Livros</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Autor</th>
-                            <th>ISBN</th>
-                            <th>Gênero</th>
-                            <th>Editora</th>
-                            <th>Ano de Publicação</th>
-                            <th>Nº páginas</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="livro : ${listaLivros}">
-                            <td th:text="${livro.id}"></td>
-                            <td th:text="${livro.title}"></td>
-                            <td th:text="${livro.author}"></td>
-                            <td th:text="${livro.isbn}"></td>
-                            <td th:text="${livro.genero}"></td>
-                            <td th:text="${livro.editora}"></td>
-                            <td th:text="${livro.ano_publicacao}"></td>
-                            <td th:text="${livro.num_paginas}"></td>
-
-                            <td>
-                                <form th:action="@{/livro/delete/}" method="post">
-                                    <button type="submit">Deletar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </main>
+      
     </div>
-</body>
+
+    <p id="resultado"></p>
+
+    <br><br><br><br>
+
+    <h1>CONSULTAR TÍTULO</h1>
+    <div class="consultar-container">
+      <div class="consultar-card">
+        <h2>Consultar por ID</h2>
+        <input type="number" id="idConsulta" placeholder="ID" />
+        <button onclick="consultarPorId()">Consultar</button>
+      </div>
+      <div class="consultar-card">
+        <h2>Consultar por ISBN</h2>
+        <input type="text" id="isbnConsulta" placeholder="ISBN" />
+        <button onclick="consultarPorIsbn()">Consultar</button>
+      </div>
+      <div class="consultar-card">
+        <h2>Consultar por Título</h2>
+        <input type="text" id="tituloConsulta" placeholder="Título" />
+        <button onclick="consultarPorTitulo()">Consultar</button>
+      </div>
+    </div>
+
+    <br><br><br><br>
+
+    <h1>RESULTADO</h1>
+    <div id="detalhesLivro">
+    </div>
+
+    
+
+  </body>
 </html>
