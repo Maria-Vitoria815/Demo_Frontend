@@ -18,5 +18,18 @@ public class LivroController {
         return mv;
     }
 
+    @GetMapping("/form")
+    public ModelAndView cadastroLivro() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("form");
+        return mv;
+    }
+
+    @GetMapping("/editar")
+    public ModelAndView editarLivro() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("form");
+        return mv;
+    }
     
 }

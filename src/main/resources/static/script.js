@@ -54,7 +54,23 @@ const API_URL = "http://localhost:8081/livro";
                     <td>${livro.num_paginas}</td>
                     <td>${livro.sinopse}</td>
 
-                    
+
+               <td>
+                  <button 
+                    onclick="visualizarLivro(${livro.id_livro})" 
+                    style="background-color: light-green; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 14px; font-weight: bold;">
+                    Visualizar
+                  </button>
+               </td>
+
+               <td>
+                    <button 
+                    onclick="editarLivro(${livro.id_livro})" 
+                    style="background-color: light-green; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 14px; font-weight: bold;">
+                    Editar
+                  </button>
+              </td>
+
                     <td>
                         <button 
                             onclick="deletarLivro(${livro.id_livro})" 
@@ -65,7 +81,13 @@ const API_URL = "http://localhost:8081/livro";
                 `;
           tabelaCorpo.appendChild(row);
         });
+      }                     
+
+  
+      async function visualizarLivro(id) {
+        window.location.href = `http://localhost:8080/form?id=${id}`;
       }
+      
 
 
       async function deletarLivro(id) {
