@@ -47,7 +47,7 @@
                 <label for="sinopse">Sinopse:</label>
                 <textarea id="sinopse" rows="5" required></textarea>
                 
-                <button type="submit" id="salvarButton">Salvar</button>
+                <button type="submit" id="salvarButton" onclick="salvarAlteracoes()">Salvar</button>
                 
             </form>
         </section>
@@ -63,7 +63,7 @@
               const response = await fetch(`http://localhost:8081/livro/${livroId}`);
               if (response.ok) {
                 const livro = await response.json();
-                preencherFormulario(livro);
+                preencherFormularioNaoEditavel(livro);
               } else {
                 alert("Erro ao buscar os dados do livro.");
               }
@@ -73,7 +73,7 @@
           }
         };
     
-        function preencherFormulario(livro) {
+        function preencherFormularioNaoEditavel(livro) {
           document.getElementById("id_livro").value = livro.id_livro;
           document.getElementById("titulo").value = livro.titulo;
           document.getElementById("autor").value = livro.autor;
@@ -87,18 +87,18 @@
           document.getElementById("sinopse").value = livro.sinopse;
 
            //Deixar o forms não-editável 
-  document.getElementById("id_livro").disabled = true;
-  document.getElementById("titulo").disabled = true;
-  document.getElementById("autor").disabled = true;
-  document.getElementById("isbn").disabled = true;
-  document.getElementById("ano_publicacao").disabled = true;
-  document.getElementById("editora").disabled = true;
-  document.getElementById("genero").disabled = true;
-  document.getElementById("idioma").disabled = true;
-  document.getElementById("preco").disabled = true;
-  document.getElementById("num_paginas").disabled = true;
-  document.getElementById("sinopse").disabled = true;
-  document.getElementById("salvarButton").disabled = true;
+          document.getElementById("id_livro").disabled = true;
+          document.getElementById("titulo").disabled = true;
+          document.getElementById("autor").disabled = true;
+          document.getElementById("isbn").disabled = true;
+          document.getElementById("ano_publicacao").disabled = true;
+          document.getElementById("editora").disabled = true;
+          document.getElementById("genero").disabled = true;
+          document.getElementById("idioma").disabled = true;
+          document.getElementById("preco").disabled = true;
+          document.getElementById("num_paginas").disabled = true;
+          document.getElementById("sinopse").disabled = true;
+          document.getElementById("salvarButton").disabled = true;
         }
       </script>
 

@@ -89,6 +89,54 @@ const API_URL = "http://localhost:8081/livro";
       }
       
 
+//---------------------------------------------------------------------
+
+async function editarLivro(id) {
+  window.location.href = `http://localhost:8080/form?id=${id}`;
+}
+
+
+
+//--------------------------------------------------------------------------
+      
+
+async function salvarAlteracoes() {
+  // Obter os dados atualizados do formulário
+  const livroAtualizado = {
+    id_livro: document.getElementById("id_livro").value,
+    titulo: document.getElementById("titulo").value,
+    autor: document.getElementById("autor").value,
+    isbn: document.getElementById("isbn").value,
+    ano_publicacao: document.getElementById("ano_publicacao").value,
+    editora: document.getElementById("editora").value,
+    genero: document.getElementById("genero").value,
+    idioma: document.getElementById("idioma").value,
+    preco: document.getElementById("preco").value,
+    num_paginas: document.getElementById("num_paginas").value,
+    sinopse: document.getElementById("sinopse").value,
+  };
+
+  // Enviar os dados atualizados para a API para salvar as alterações
+  const response = await fetch(`http://localhost:8081/livro/${livroAtualizado.id_livro}`, {
+    method: "PUT", // Usar PUT para atualizar os dados
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(livroAtualizado),
+  });
+
+  if (response.ok) {
+    alert("Livro atualizado com sucesso!");
+    // Redirecionar ou recarregar a página para refletir as alterações
+    window.location.href = "http://localhost:8080";
+  } else {
+    alert("Erro ao atualizar o livro.");
+  }
+}
+
+
+
+
 
       async function deletarLivro(id) {
         const response = await fetch(`${API_URL}/delete/${id}`, {
